@@ -15,8 +15,8 @@ public class DataHelper {
         private String wrongMonthFormat;
         private String validYear;
         private String invalidYear;
-        private String invalidName;
         private String validName;
+        private String invalidName;
         private String code;
     }
 

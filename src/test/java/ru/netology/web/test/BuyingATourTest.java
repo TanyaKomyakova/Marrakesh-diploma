@@ -12,6 +12,7 @@ import static com.codeborne.selenide.Selenide.open;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+
 public class BuyingATourTest {
     @BeforeAll
     static void setUpAll() {
@@ -33,7 +34,6 @@ public class BuyingATourTest {
         val statusExpected = "APPROVED";
         val statusActual = SQLHelper.getPurchaseInformation();
         assertEquals(statusExpected,statusActual);
-
     }
 
     @Test
@@ -149,6 +149,7 @@ public class BuyingATourTest {
     @Test
     @Order(13)
     void  nameVerificationForDebitPayment() {
+        open("http://localhost:8080");
         val purchasePage = new PurchasePage();
         val cardApproved = DataHelper.getCard();
         val cardOperation = purchasePage.nameVerificationOnDebitPayment(cardApproved);
@@ -158,6 +159,7 @@ public class BuyingATourTest {
     @Test
     @Order(14)
     void  nameVerificationForCreditPayment() {
+        open("http://localhost:8080");
         val purchasePage = new PurchasePage();
         val cardApproved = DataHelper.getCard();
         val cardOperation = purchasePage.nameVerificationOnCreditPayment(cardApproved);
