@@ -83,5 +83,52 @@ public class SQLHelper {
         return null;
     }
 
+    public static String receiveCreatedPayment() {
+        val transactionSQL = "SELECT created FROM order_entity ORDER BY created DESC LIMIT 1;";
+        val runner = new QueryRunner();
+        try (val conn = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/app", "app", "pass"
+        );
+        ) {
+            val transactions = runner.query(conn, transactionSQL, new ScalarHandler<>());
+            return String.valueOf(transactions);
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        }
+        return null;
+    }
+
+    public static String receiveCreatedDebitPayment() {
+        val transactionSQL = "SELECT created FROM payment_entity ORDER BY created DESC LIMIT 1;";
+        val runner = new QueryRunner();
+        try (val conn = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/app", "app", "pass"
+        );
+        ) {
+            val transactions = runner.query(conn, transactionSQL, new ScalarHandler<>());
+            return String.valueOf(transactions);
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        }
+        return null;
+    }
+
+    public static String receiveCreatedCreditPayment() {
+        val transactionSQL = "SELECT created FROM credit_request_entity ORDER BY created DESC LIMIT 1;";
+        val runner = new QueryRunner();
+        try (val conn = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/app", "app", "pass"
+        );
+        ) {
+            val transactions = runner.query(conn, transactionSQL, new ScalarHandler<>());
+            return String.valueOf(transactions);
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        }
+        return null;
+    }
+
+
+
 
 }
